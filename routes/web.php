@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 //Import my Controller
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,19 @@ use App\Http\Controllers\UploadController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/todos', [TodoController::class, 'index'] );
+
+//Return form to create Todo
+Route::get('/todos/create', [TodoController::class, 'create'] );
+
+
+Route::get('/todos/edit', [TodoController::class, 'edit'] );
+
+//Store Todo
+Route::post('/todos/create', [TodoController::class, 'store'] );
+
+
 
 Route::get('/', function () {
     return view('welcome');
