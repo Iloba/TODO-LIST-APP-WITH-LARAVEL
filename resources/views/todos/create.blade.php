@@ -8,9 +8,11 @@
                     @include('layouts.error');
                     @csrf
                     <input name="title" type="text" placeholder="Enter Todo" class="form-control"> <br>
-                    <input type="submit" class="btn btn-info" value="Create Todo">
+                    <input type="submit" class="btn btn-info" value="Create Todo"> <br> <br>
+                    <a style="display: block; margin: auto; width: 50%;" class=" mt-3 text-light btn btn-success  " href="/todos">See My Todos</a>
                 </form>
             </div>
+           
         </div>
     </div>
 @endsection

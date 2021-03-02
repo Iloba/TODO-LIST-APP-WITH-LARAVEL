@@ -22,7 +22,7 @@ Route::get('/todos', [TodoController::class, 'index'] );
 Route::get('/todos/create', [TodoController::class, 'create'] );
 
 
-Route::get('/todos/edit', [TodoController::class, 'edit'] );
+Route::get('/todos/{id}/edit', [TodoController::class, 'edit'] );
 
 //Store Todo
 Route::post('/todos/create', [TodoController::class, 'store'] );
