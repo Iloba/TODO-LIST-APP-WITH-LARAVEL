@@ -27,6 +27,8 @@ Route::get('/todos/{id}/edit', [TodoController::class, 'edit'] );
 //Store Todo
 Route::post('/todos/create', [TodoController::class, 'store'] );
 
+//Update Route with Patch Request
+
 
 
 Route::get('/', function () {

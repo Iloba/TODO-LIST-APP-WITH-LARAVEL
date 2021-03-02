@@ -11,7 +11,7 @@
                 <form method="post" action="/todos/create">
                     @include('layouts.error');
                     @csrf
-                    <input name="title" type="text" placeholder="{{$todo->title}}" class="form-control"> <br>
+                    <input name="title" type="text" value="{{$todo->title}}" class="form-control"> <br>
                     <input type="submit" class="btn btn-warning" value="Update Todo"> <br> <br>
                     <a style="display: block; margin: auto; width: 50%;" class=" mt-3 text-light btn btn-success  " href="/todos">See My Todos</a>
                 </form>
