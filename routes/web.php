@@ -16,7 +16,7 @@ use App\Http\Controllers\TodoController;
 |
 */
 
-Route::get('/todos', [TodoController::class, 'index'] );
+Route::get('/todos', [TodoController::class, 'index'] )->name('todos.index');
 
 //Return form to create Todo
 Route::get('/todos/create', [TodoController::class, 'create'] );
@@ -27,8 +27,19 @@ Route::get('/todos/{id}/edit', [TodoController::class, 'edit'] );
 //Store Todo
 Route::post('/todos/create', [TodoController::class, 'store'] );
 
-//Update Route with Patch Request
+//Update Route with Patch Request (Named Route)
+Route::patch('/todos/{id}/update', [TodoController::class, 'update'])->name('todo.update');
 
+
+//Completed
+Route::put('/todos/{id}/complete', [TodoController::class, 'complete'])->name('todo.complete');
+
+//Mark Todo as Incomplete
+Route::delete('/todos/{id}/incomplete', [TodoController::class, 'incomplete'])->name('todo.incomplete');
+
+
+//Delete Route
+Route::delete('/todos/{id}/delete', [TodoController::class, 'delete'])->name('todo.delete');
 
 
 Route::get('/', function () {

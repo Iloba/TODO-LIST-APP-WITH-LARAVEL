@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container border rounded p-4">
         <div class="row">
             <div class="col-md-8 mx-auto pt-5">
                 <form method="post" action="/todos/create">

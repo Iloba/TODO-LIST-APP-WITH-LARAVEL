@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container border rounded p-4">
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div>
@@ -8,7 +8,8 @@
                 <h2 class="text-center">{{$todo->title}}</h2>
             </div> <br>
             <div class="mt-4 text-center">
-                <form method="post" action="/todos/create">
+                <form method="post" action="{{route('todo.update', $todo->id)}}">
+                    @method('patch')
                     @include('layouts.error');
                     @csrf
                     <input name="title" type="text" value="{{$todo->title}}" class="form-control"> <br>
