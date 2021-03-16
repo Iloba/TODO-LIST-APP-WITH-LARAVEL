@@ -22,6 +22,10 @@
 
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+
+    <!--Livewire-->
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -90,5 +94,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>

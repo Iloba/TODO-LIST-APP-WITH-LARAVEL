@@ -13,6 +13,7 @@
                     @include('layouts.error');
                     @csrf
                     <input name="title" type="text" value="{{$todo->title}}" class="form-control"> <br>
+                    <textarea name="description" class="form-control" id="" cols="30" rows="6" placeholder="Enter Description">{{$todo->description}}</textarea> <br>
                     <input type="submit" class="btn btn-warning" value="Update Todo"> <br> <br>
                     <a style="display: block; margin: auto; width: 50%;" class=" mt-3 text-light btn btn-success  " href="/todos">See My Todos</a>
                 </form>

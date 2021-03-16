@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Step;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Todo extends Model
 {
@@ -11,6 +12,11 @@ class Todo extends Model
 
     //Fillable Property
     protected $fillable = [
-        'title'
+        'title',
+        'description'
     ];
+
+    public function steps(){
+        return $this->hasMany(Step::class);
+    }
 }

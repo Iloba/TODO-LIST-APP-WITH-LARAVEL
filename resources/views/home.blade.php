@@ -15,6 +15,8 @@
                         <input type="submit" value="Upload">
                     </form>
                 </div>
+                <br>
+                <a class="btn btn-success" href="{{route('todos.index')}}">My Todo List</a>
             </div>
         </div>
     </div>

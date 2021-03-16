@@ -13,11 +13,21 @@ class TodoController extends Controller
 {
     //Route Controller for Todos
 
+
+    //Apply Middleware
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     //Show all Todos
     public function index(){
 
         //Get All Todos
-        $todos = Todo::orderBy('completed', 'asc')->paginate(6);
+        $todos = auth()->user()->todos()->orderBy('completed')->paginate(5);
+
+        // return $todos;
+
+        // $todos = Todo::orderBy('completed', 'asc')->paginate(6);
 
         return view('todos.index')->with(['todos' => $todos]);
     }
@@ -51,7 +61,8 @@ class TodoController extends Controller
 
         //Rules
         $rules = [
-            'title' => 'required|max:255'
+            'title' => 'required|max:255',
+            'description' => 'required|max:255'
         ];
 
 
@@ -74,6 +85,7 @@ class TodoController extends Controller
         //Update Todo
          $todo = Todo::find($id);
           $todo->title = $request->title;
+          $todo->description = $request->description;
 
           $todo->save();
 
@@ -86,7 +98,7 @@ class TodoController extends Controller
 
     //Store Todos
     public function store(Request $request){
-        
+       
         //Validate Form request (Rules)
         $rules = [
             'title' => 'required|max:255'
@@ -108,8 +120,19 @@ class TodoController extends Controller
             ->withInput();
         }
 
-        //Store Todo if Validation is Successful
-        Todo::create($request->all());
+        //Store Todo if Validation is Successful for each User
+       $todo =  auth()->user()->todos()->create($request->all());
+
+        //Check if User has Steps
+        if($request->step){
+
+            //Store all Steps
+            foreach($request->step as $step){
+                $todo->steps()->create(['name' => $step]);
+            }
+        }
+
+       
 
         //Return Redirect with Success Message
         return redirect(route('todos.index'))->with('status', 'Todo Creation Successful');
@@ -150,11 +173,22 @@ class TodoController extends Controller
     //Delete Todo
     public function delete($id){
         
+        //Delete Relationship
+        $todo->steps->each->delete();
+
         $todo = Todo::find($id);
 
         $todo->delete();
 
         //Redirect
         return redirect(route('todos.index'))->with('status', 'Todo Deleted Successfully');
+    }
+
+
+    //Show Todo
+    public function show( Todo $todo){
+       
+        //Return View with Todo Data
+        return view('todos.show')->with(['todo' => $todo]);
     }
 }
