@@ -81,11 +81,27 @@ class TodoController extends Controller
             ->withErrors($validator)
             ->withInput();
         }
-     
+
+      //Check if User has Steps
+      if($request->step){
+
+        //Store all Steps
+        foreach($request->step as $step){
+            $step->update(['name' => $step]);
+        }
+
+        
         //Update Todo
          $todo = Todo::find($id);
           $todo->title = $request->title;
           $todo->description = $request->description;
+
+            
+        }
+
+
+
+
 
           $todo->save();
 
